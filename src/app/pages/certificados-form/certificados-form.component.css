@@ -60,3 +60,12 @@ label {
 .remove-btn i:hover {
   background-color: #e2e8f0;
 }
+
+.custom-input:focus {
+  border: 1px solid #3b5ac2;
+  box-shadow: none;
+}
+
+.custom-input-group:has(input:focus) label {
+  color: #3b5ac2;
+}
