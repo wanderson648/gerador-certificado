@@ -5,7 +5,7 @@ import { SecundaryButtonComponent } from '../../_components/secundary-button/sec
 
 @Component({
   selector: 'app-certificados',
-  imports: [RouterLink, SecundaryButtonComponent],
+  imports: [RouterLink, SecundaryButtonComponent, ItemCertificadoComponent],
   templateUrl: './certificados.component.html',
   styleUrl: './certificados.component.css'
 })
