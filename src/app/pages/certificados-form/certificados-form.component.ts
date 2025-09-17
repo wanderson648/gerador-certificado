@@ -7,26 +7,29 @@ import { Certificado } from '../../interfaces/certificado';
 import { CertificadoService } from '../../_services/certificado.service';
 import { v4 as uuidv4 } from 'uuid';
 
-
 @Component({
   selector: 'app-certificados-form',
   standalone: true,
-  imports: [PrimaryButtonComponent, SecundaryButtonComponent, FormsModule, CommonModule],
+  imports: [
+    PrimaryButtonComponent,
+    SecundaryButtonComponent,
+    FormsModule,
+    CommonModule,
+  ],
   templateUrl: './certificados-form.component.html',
-  styleUrl: './certificados-form.component.css'
+  styleUrl: './certificados-form.component.css',
 })
 export class CertificadosFormComponent {
-
   constructor(private certificadoService: CertificadoService) {}
-  
+
   @ViewChild('form') form!: NgForm;
 
   certificado: Certificado = {
     id: '',
     atividades: [],
     nome: '',
-    dataEmissao: ''
-  }
+    dataEmissao: '',
+  };
 
   atividade: string = '';
 
@@ -35,20 +38,17 @@ export class CertificadosFormComponent {
   }
 
   formValido() {
-    return this.certificado.atividades.length > 0 && this.certificado.nome.length > 0;
+    return (
+      this.certificado.atividades.length > 0 && this.certificado.nome.length > 0
+    );
   }
 
   adicionarAtividade() {
     if (this.atividade.length == 0) {
       return;
     }
-
     this.certificado.atividades.push(this.atividade);
-    this.certificado.id = uuidv4();
     this.atividade = '';
-
-    this.certificado = this.estadoInicialCertificado();
-    this.form.resetForm();
   }
 
   excluirAtividade(index: number) {
@@ -56,11 +56,15 @@ export class CertificadosFormComponent {
   }
 
   submit() {
-    if(!this.formValido()) {
+    if (!this.formValido()) {
       return;
     }
     this.certificado.dataEmissao = this.dataAtual();
+    this.certificado.id = uuidv4();
     this.certificadoService.adicionarCertificado(this.certificado);
+
+    this.certificado = this.estadoInicialCertificado();
+    this.form.resetForm();
   }
 
   dataAtual() {

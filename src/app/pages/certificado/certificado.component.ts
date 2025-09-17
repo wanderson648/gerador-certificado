@@ -16,12 +16,12 @@ export class CertificadoComponent implements OnInit {
   id: string | null = null;
   certificado: Certificado | undefined;
 
-  constructor(private CertificadoService: CertificadoService, private route: ActivatedRoute) {}
+  constructor(private certificadoService: CertificadoService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      this.certificado = this.CertificadoService.certificados.find((item) => item.id == this.id);
+      this.certificado = this.certificadoService.certificados.find(item => item.id == this.id);
     })
     console.log(this.certificado);
   }
