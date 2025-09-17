@@ -1,4 +1,3 @@
-import { routes } from './../../app.routes';
 import { CertificadoService } from './../../_services/certificado.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SecundaryButtonComponent } from "../../_components/secundary-button/secundary-button.component";
